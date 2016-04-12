@@ -2,6 +2,6 @@
 
 Is built on top Chris Coyers Complete Guide to Flexbox and Crystal Villa’s Web Components Introduction.
 
-<img src="https://raw.githubusercontent.com/bohdaq/WebcomponentFlexboxDemo/master/sm.png" heigh=“300">
-<img src="https://raw.githubusercontent.com/bohdaq/WebcomponentFlexboxDemo/master/md.png" heigh =“300">
-<img src="https://raw.githubusercontent.com/bohdaq/WebcomponentFlexboxDemo/master/lg.png" heigh =“300">
+Check it live @ <a href=“http://vibeguru.org:3564/“>Demo Page</a>
+
+Hint! Do not forget to enable “Experimental Web Platform features” in about:flags on Chrome

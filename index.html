@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Web components & Flexbox Intro</title>
+	<style type="text/css">
+		body{
+			background: #e4e7ea;
+		}
+		.navigation {
+			list-style: none;
+			margin: 0;
+			background: #1d2939;
+			display: -webkit-box;
+			display: -moz-box;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row wrap;
+			justify-content: flex-end;
+		}
+
+		.navigation a {
+			text-decoration: none;
+			display: block;
+			padding: 1em;
+			color: white;
+		}
+
+		.navigation a:hover {
+			background: #00b7f5;
+		}
+
+		@media all and (max-width: 800px) {
+			.navigation {
+				justify-content: space-around;
+			}
+		}
+		@media all and (max-width: 600px) {
+			.navigation {
+				-webkit-flex-flow: column wrap;
+				flex-flow: column wrap;
+				padding: 0;
+			}
+
+			.navigation a {
+				text-align: center;
+				padding: 10px;
+				border-top: 1px solid rgba(255, 255, 255, 0.3);
+				border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+			}
+
+			.navigation li:last-of-type a {
+				border-bottom: none;
+			}
+		}
+		.flex{
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: space-around;
+		}
+		my-panel{
+			flex-grow:1;
+			margin:10px;
+		}
+	</style>
+</head>
+<body>
+	<ul class="navigation">
+		<li><a href="#">Home</a></li>
+		<li><a href="#">About</a></li>
+		<li><a href="#">Products</a></li>
+		<li><a href="#">Contact</a>
+		</li>
+	</ul>
+
+	<div class="flex">
+		<my-panel>
+			<h1>This is the title</h1>
+			<h2>Hey yo!</h2>
+			<p>Hello there!</p><span>test</span>
+		</my-panel>
+
+		<my-panel>
+			<h2>Lorem ipsum</h2>
+			<h1>My custom panel</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+		</my-panel>
+
+		<my-panel>
+			<h2>Praesent eget</h2>
+			<h1>Nibh sodales</h1>
+			<p>Praesent eget nibh sodales ligula auctor</p>
+		</my-panel>
+
+		<my-panel>
+			<h2>Lobortis</h2>
+			<h1>lobortis magna</h1>
+			<p>Suspendisse in lobortis magna</p>
+		</my-panel>
+
+		<my-panel>
+			<h2>Introduction</h2>
+			<h1>My custom panel</h1>
+			<p>This is the content of the panel, we can add anything we need!</p>
+		</my-panel>
+
+		<my-panel>
+			<h2>Finibus</h2>
+			<h1>nisi sed eleifend</h1>
+			<p>Suspendisse finibus et nisi sed eleifend!</p>
+		</my-panel>
+	</div>
+
+	<template>
+		<style>
+			#panel{
+				border-radius: 3px;
+				overflow: hidden;
+				font-family: 'Arial';
+			}
+			.panel-header{
+				padding: 10px 20px;
+				background-color: #1d2939;
+			}
+			.panel-header h1{
+				margin:0;
+				padding:0;
+				font-size: 8px;
+				line-height: 8px;
+				text-transform: uppercase;
+				color:#fff;
+			}
+			.panel-buttons span{
+				display: inline-block;
+				opacity: 0.2;
+				float:right;
+				color:#fff;
+				font-size: 16px;
+				transition: all 0.2s ease-out 0s;
+				cursor: pointer;
+				margin-top: 3px;
+			}
+			.panel-buttons span:hover{
+				opacity: 1;
+			}
+
+			.panel-body{
+				padding:5px 20px;
+				background-color: #fff;
+			}
+		</style>
+		<div id="panel">
+			<div class="panel-header">
+				<div class="panel-buttons">
+					<span class="collapse">^</span>
+				</div>
+				<h1><content select="h1"></content></h1>
+			</div>
+			<div class="panel-body">
+				<content></content>
+			</div>
+		</div>
+	</template>
+
+
+	<script>
+		var Panel = Object.create(HTMLElement.prototype);
+
+		var tmpl = document.querySelector('template');
+
+		Panel.createdCallback = function() {
+			var root = this.createShadowRoot();
+
+			root.appendChild(document.importNode(tmpl.content, true));
+			var close = root.querySelector('.panel-buttons span.collapse');
+
+			close.addEventListener('click',function(){
+				var body = root.querySelector('.panel-body');
+
+				if(body.style.display === 'none'){
+					body.style.display = 'block'
+				}else{
+					body.style.display = 'none';
+				}
+			},false);
+		};
+
+		var MyPanel = document.registerElement('my-panel', {
+			prototype: Panel
+		});
+	</script>
+</body>
+</html>

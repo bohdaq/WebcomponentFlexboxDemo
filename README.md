@@ -2,6 +2,8 @@
 
 Is built on top Chris Coyers Complete Guide to Flexbox and Crystal Villa’s Web Components Introduction.
 
-![alt tag](https://raw.githubusercontent.com/bohdaq/WebcomponentFlexboxDemo/master/sm.png)
-![alt tag](https://raw.githubusercontent.com/bohdaq/WebcomponentFlexboxDemo/master/md.png)
-![alt tag](https://raw.githubusercontent.com/bohdaq/WebcomponentFlexboxDemo/master/lg.png)
+<img src="https://raw.githubusercontent.com/bohdaq/WebcomponentFlexboxDemo/master/sm.png" width="200">
+
+<img src="https://raw.githubusercontent.com/bohdaq/WebcomponentFlexboxDemo/master/md.png" width="200">
+
+<img src="https://raw.githubusercontent.com/bohdaq/WebcomponentFlexboxDemo/master/sm.lg” width="200">
